@@ -2,16 +2,48 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "thuc",
-  "password": "thuc"
+  "username": "messi",
+  "password": "123456"
 }
 
 ###
-
 POST http://localhost:5000/api/auth/login
-Content-type: application/json 
+Content-Type: application/json 
 
 {
-  "username": "thuc",
-  "password": "thuc"
+  "username": "messi",
+  "password": "123456"
 }
+
+###
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTNjNzg5Y2Y3ZDM5NzlhYzc3MGQ3YzYiLCJpYXQiOjE2MzEzNTI5OTJ9.Y_GtlGtwJKjT0gg8asxXA3Dli8PV0N7A8MARMskA7MY
+
+{
+  "title": "messi is player football",
+  "description" : "khong co gi de noi",
+  "url": "google.com",
+  "status": "LEARNED"
+}
+
+###
+GET http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTNjNzg5Y2Y3ZDM5NzlhYzc3MGQ3YzYiLCJpYXQiOjE2MzEzNTM1NjV9.eUpiynUzT-M7twyO0pqB6JUfPNWWigPrTIzDihYjiHQ
+
+###
+PUT http://localhost:5000/api/posts/613c7914f7d3979ac770d7c9
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTNjNzg5Y2Y3ZDM5NzlhYzc3MGQ3YzYiLCJpYXQiOjE2MzEzNTM1NjV9.eUpiynUzT-M7twyO0pqB6JUfPNWWigPrTIzDihYjiHQ
+
+{
+  "title": "Thay doi thanh ronaldo",
+  "description": "ronaldo moi chuyen toi manU",
+  "url": "facebook.com",
+  "status": "LEARNED"
+}
+
+###
+DELETE  http://localhost:5000/api/posts/613c7914f7d3979ac770d7c9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTNjNzg5Y2Y3ZDM5NzlhYzc3MGQ3YzYiLCJpYXQiOjE2MzEzNTM1NjV9.eUpiynUzT-M7twyO0pqB6JUfPNWWigPrTIzDihYjiHQ
+
