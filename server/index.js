@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dontenv = require('dotenv');
+const authRouter = require('./routes/auth');
 
 dontenv.config();
 
@@ -19,8 +20,9 @@ const connectDB = async () => {
 connectDB();
 
 const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => res.send('Hello World'));
+app.use('/api/auth', authRouter);
 
 const PORT = 5000;
 
