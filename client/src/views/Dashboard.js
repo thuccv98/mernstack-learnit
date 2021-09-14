@@ -7,6 +7,7 @@ import {
   OverlayTrigger,
   Row,
   Spinner,
+  Toast,
   Tooltip,
 } from 'react-bootstrap';
 import { AuthContext } from '../contexts/AuthContext';
@@ -26,12 +27,15 @@ const Dashboard = () => {
     postState: { posts, postsLoading },
     getPosts,
     setShowAddPostModal,
+    showToast: { show, message, type },
+    setShowToast,
   } = useContext(PostContext);
 
   // Start: get all posts
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let body = null;
 
@@ -51,7 +55,12 @@ const Dashboard = () => {
             <Card.Text>
               Click the button below to track your first skill to learn
             </Card.Text>
-            <Button variant="primary">LearnIt!</Button>
+            <Button
+              variant="primary"
+              onClick={setShowAddPostModal.bind(this, true)}
+            >
+              LearnIt!
+            </Button>
           </Card.Body>
         </Card>
       </>
@@ -87,6 +96,25 @@ const Dashboard = () => {
     <>
       {body}
       <AddPostModal />
+
+      {/* After post is added, show toast */}
+      <Toast
+        show={show}
+        style={{ position: 'fixed', top: '20%', right: '10px' }}
+        className={`bg-${type} text-white`}
+        onClose={setShowToast.bind(this, {
+          show: false,
+          message: '',
+          type: null,
+        })}
+        delay={3000}
+        autohide
+        animation={false}
+      >
+        <Toast.Body>
+          <strong>{message}</strong>
+        </Toast.Body>
+      </Toast>
     </>
   );
 };
