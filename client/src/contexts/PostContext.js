@@ -4,6 +4,7 @@ import { postReducer } from '../reducers/postReducer';
 import {
   ADD_POST,
   apiUrl,
+  DELETE_POST,
   POSTS_LOADED_FAIL,
   POSTS_LOADED_SUCCESS,
 } from './constants';
@@ -54,6 +55,18 @@ const PostContextProvider = ({ children }) => {
         : { success: false, message: 'Server error' };
     }
   };
+
+  // Delete Post
+  const deletePost = async (postId) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/posts/${postId}`);
+      if (response.data.success)
+        dispatch({ type: DELETE_POST, payload: postId });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Post context data
   const postContextData = {
     getPosts,
@@ -63,6 +76,7 @@ const PostContextProvider = ({ children }) => {
     addPost,
     showToast,
     setShowToast,
+    deletePost,
   };
 
   return (
