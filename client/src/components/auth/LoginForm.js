@@ -8,8 +8,6 @@ const LoginForm = () => {
   // Context
   const { loginUser } = useContext(AuthContext);
 
-  // Router
-
   // Loacal state
   const [loginForm, setLoginForm] = useState({
     username: '',
@@ -28,8 +26,7 @@ const LoginForm = () => {
 
     try {
       const loginData = await loginUser(loginForm);
-      if (loginData.success) {
-      } else {
+      if (!loginData.success) {
         setAlert({ type: 'danger', message: loginData.message });
         setTimeout(() => {
           setAlert(null);
